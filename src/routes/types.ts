@@ -40,10 +40,10 @@ export enum Category {
  * Representation of an in-game item.
  */
 export class Item {
-	id: string;
-	name: string;
-	price: number;
-	category: Category | null; // Some items, such as coffee bean and truffle do not have a grange display "category"
+	readonly id: string;
+	readonly name: string;
+	readonly price: number;
+	readonly category: Category | null; // Some items, such as coffee bean and truffle do not have a grange display "category"
 
 	/**
 	 * @param id Unique identifier for the item. Corresponds to the in-game ID.
@@ -63,7 +63,7 @@ export class Item {
  * Item found by fishing with a rod.
  */
 export class Fish extends Item {
-	seasons: Set<Season>;
+	readonly seasons: Set<Season>;
 
 	/**
 	 * @param id Unique identifier. Corresponds to the in-game ID.
@@ -86,7 +86,7 @@ export class Fish extends Item {
  * Item found by growing it on the farm.
  */
 export class Crop extends Item {
-	seasons: Set<Season>;
+	readonly seasons: Set<Season>;
 
 	/**
 	 * @param id Unique identifier. Corresponds to the in-game ID.
@@ -111,7 +111,7 @@ export class Crop extends Item {
  * Item found by foraging from the ground.
  */
 export class Forage extends Item {
-	season: Season | null;
+	readonly season: Season | null;
 
 	constructor(id: string, name: string, price: number, season: Season | null) {
 		super(id, name, price, Category.Forage);
@@ -123,9 +123,9 @@ export class Forage extends Item {
  * A Community Center bundle requirement.
  */
 export class Requirement {
-	item: Item;
-	quality: Quality;
-	quantity: number;
+	readonly item: Item;
+	readonly quality: Quality;
+	readonly quantity: number;
 
 	/**
 	 * @param item Required {@link Item}.
@@ -143,9 +143,9 @@ export class Requirement {
  * A Community Center bundle.
  */
 export class Bundle {
-	name: string;
-	slot_count: number;
-	requirements: Requirement[];
+	readonly name: string;
+	readonly slot_count: number;
+	readonly requirements: Requirement[];
 
 	/**
 	 * @param name Name of the bundle in game.
@@ -168,6 +168,6 @@ export class Bundle {
  * A room in the Community Center. Just used to organize the bundles.
  */
 export type Room = {
-	name: string;
-	bundles: Bundle[];
+	readonly name: string;
+	readonly bundles: Bundle[];
 };
