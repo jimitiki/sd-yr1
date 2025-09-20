@@ -2,13 +2,13 @@
 	import { Requirement } from './types.js';
 	let { data } = $props();
 	/**
-	 * @type {{requirement: Requirement, completed: boolean}[]}
+	 * @type {{requirement: Requirement, donated: boolean}[]}
 	 */
 	let checklist = $state([]);
 	data.communityCenter.forEach((room) => {
 		room.bundles.forEach((bundle) => {
-			bundle.requirements.forEach((requirement) => {
-				checklist.push({ requirement, completed: false });
+			bundle.requirements.forEach((req) => {
+				checklist.push(req);
 			});
 		});
 	});
@@ -18,7 +18,7 @@
 <div id="checklist">
 	{#each checklist as { requirement }, index}
 		<div id="entry">
-			<input type="checkbox" bind:checked={checklist[index].completed} />{requirement.quantity}
+			<input type="checkbox" bind:checked={checklist[index].donated} />{requirement.quantity}
 			{requirement.item.name}
 		</div>
 	{/each}
@@ -28,7 +28,7 @@
 <div id="checklist">
 	{#each checklist as { requirement }, index}
 		<div id="entry">
-			<input type="checkbox" bind:checked={checklist[index].completed} />{requirement.quantity}
+			<input type="checkbox" bind:checked={checklist[index].donated} />{requirement.quantity}
 			{requirement.item.name}
 		</div>
 	{/each}
