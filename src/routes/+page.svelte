@@ -19,7 +19,7 @@
 	{#each checklist as { requirement }, index}
 		<div id="entry">
 			<input type="checkbox" bind:checked={checklist[index].completed} />{requirement.quantity}
-			{requirement.item}
+			{requirement.item.name}
 		</div>
 	{/each}
 </div>
@@ -29,7 +29,7 @@
 	{#each checklist as { requirement }, index}
 		<div id="entry">
 			<input type="checkbox" bind:checked={checklist[index].completed} />{requirement.quantity}
-			{requirement.item}
+			{requirement.item.name}
 		</div>
 	{/each}
 </div>
