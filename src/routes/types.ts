@@ -57,6 +57,10 @@ export class Item {
 		this.price = price;
 		this.category = category;
 	}
+
+	inSeason(season: Season) {
+		return false;
+	}
 }
 
 /**
@@ -79,6 +83,10 @@ export class Fish extends Item {
 	) {
 		super(id, name, price, Category.Fish);
 		this.seasons = new Set(seasons);
+	}
+
+	inSeason(season: Season) {
+		return this.seasons.has(season);
 	}
 }
 
@@ -105,6 +113,10 @@ export class Crop extends Item {
 		super(id, name, price, category);
 		this.seasons = new Set(seasons);
 	}
+
+	inSeason(season: Season) {
+		return this.seasons.has(season);
+	}
 }
 
 /**
@@ -116,6 +128,10 @@ export class Forage extends Item {
 	constructor(id: string, name: string, price: number, season: Season | null) {
 		super(id, name, price, Category.Forage);
 		this.season = season;
+	}
+
+	inSeason(season: Season) {
+		return this.season === season;
 	}
 }
 
