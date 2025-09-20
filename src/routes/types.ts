@@ -12,10 +12,10 @@ export enum Quality {
  * The four in-game seasons (`Spring`, `Summer`, `Fall`, and `Winter`).
  */
 export enum Season {
-	Spring,
-	Summer,
-	Fall,
-	Winter
+	Spring = 'Spring',
+	Summer = 'Summer',
+	Fall = 'Fall',
+	Winter = 'Winter'
 }
 
 /**
