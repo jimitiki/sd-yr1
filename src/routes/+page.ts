@@ -15,11 +15,6 @@ export function load() {
 					completed: function () {
 						return this.requirements.filter((req) => req.donated).length >= this.slot_count;
 					},
-					donate: function (requirement: { requirement: Requirement; donated: boolean }) {
-						if (this.completed()) return;
-						if (this.requirements.indexOf(requirement) === -1) return;
-						requirement.donated = true;
-					}
 				};
 			})
 		};
