@@ -9,7 +9,7 @@ import {
 	Requirement,
 	Bundle,
 	type Room
-} from './types';
+} from '$lib/types';
 
 export const items: Map<string, Item> = new Map(
 	[

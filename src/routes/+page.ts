@@ -1,5 +1,5 @@
-import { Quality, Requirement, Season } from './types';
-import { items, rooms } from './data';
+import { Quality, Requirement, Season } from '$lib/types';
+import { items, rooms } from '$lib/data';
 
 export type ReqState = {
 	requirement: Requirement;

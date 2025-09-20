@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Season } from './types';
+	import { Season } from '$lib/types';
 	import { type ReqState } from './+page';
 	let { data } = $props();
 	let communityCenter = $state(data.communityCenter);
