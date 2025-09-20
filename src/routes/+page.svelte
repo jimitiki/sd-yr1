@@ -1,16 +1,16 @@
 <script lang="ts">
 	import { Season } from '$lib/types';
-	import { type ReqState } from './+page';
+	import { ReqState } from '$lib/components/types.svelte.js';
+	import Requirement from '$lib/components/requirement.svelte';
 	let { data } = $props();
-	let communityCenter = $state(data.communityCenter);
 
 	let reqsByItem: Map<string, Array<ReqState>> = new Map(
 		Array.from(data.items.keys()).map((id) => [id, []])
 	);
-	communityCenter.forEach((room) => {
+	data.communityCenter.forEach((room) => {
 		room.bundles.forEach((bundle) => {
-			bundle.requirements.forEach((req) => {
-				const items = reqsByItem.get(req.requirement.item.id);
+			bundle.reqs.forEach((req) => {
+				const items = reqsByItem.get(req.item.id);
 				if (items) {
 					items.push(req);
 				}
@@ -21,21 +21,14 @@
 
 <h1>Community Center</h1>
 <div id="checklist">
-	{#each communityCenter as { name, bundles }}
+	{#each data.communityCenter as { name, bundles }}
 		<div class="room">
 			<h2>{name}</h2>
 			{#each bundles as bundle}
 				<div class="bundle">
 					<h3>{bundle.name}</h3>
-					{#each bundle.requirements as req}
-						<div class="requirement">
-							<input
-								type="checkbox"
-								bind:checked={req.donated}
-								disabled={!req.donated && !req.available()}
-							/>
-							{req.description}
-						</div>
+					{#each bundle.reqs as req}
+						<Requirement req={req}></Requirement>
 					{/each}
 				</div>
 			{/each}
@@ -52,14 +45,7 @@
 				<div>
 					<h3>{item.name}</h3>
 					{#each reqsByItem.get(item.id) || [] as req}
-						<div class="requirement">
-							<input
-								type="checkbox"
-								bind:checked={req.donated}
-								disabled={!req.donated && !req.available()}
-							/>
-							{req.description}
-						</div>
+						<Requirement req={req}></Requirement>
 					{/each}
 				</div>
 			{/each}
