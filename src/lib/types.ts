@@ -141,17 +141,17 @@ export class Forage extends Item {
 export class Requirement {
 	readonly item: Item;
 	readonly quality: Quality;
-	readonly quantity: number;
+	readonly count: number;
 
 	/**
 	 * @param item Required {@link Item}.
 	 * @param quality Minimum {@link Quality}. Default is `Quality.Standard`, meaning that any item can be donated.
-	 * @param quantity Required amount. Default is 1.
+	 * @param count Required amount. Default is 1.
 	 */
-	constructor(item: Item, quality = Quality.Standard, quantity = 1) {
+	constructor(item: Item, quality = Quality.Standard, count = 1) {
 		this.item = item;
 		this.quality = quality;
-		this.quantity = quantity;
+		this.count = count;
 	}
 }
 
@@ -160,22 +160,22 @@ export class Requirement {
  */
 export class Bundle {
 	readonly name: string;
-	readonly slot_count: number;
+	readonly slotCount: number;
 	readonly requirements: Requirement[];
 
 	/**
 	 * @param name Name of the bundle in game.
-	 * @param slot_count How many of the requirements must be fulfilled.
+	 * @param slotCount How many of the requirements must be fulfilled.
 	 * @param requirements All possible requirements.
 	 */
-	constructor(name: string, slot_count: number, requirements: Requirement[]) {
-		if (slot_count > requirements.length) {
-			throw RangeError('slot_count may not be higher than the number of allowed items');
-		} else if (slot_count <= 0) {
-			throw RangeError('slot_count must be more than zero');
+	constructor(name: string, slotCount: number, requirements: Requirement[]) {
+		if (slotCount > requirements.length) {
+			throw RangeError('slotCount may not be higher than the number of allowed items');
+		} else if (slotCount <= 0) {
+			throw RangeError('slotCount must be more than zero');
 		}
 		this.name = name;
-		this.slot_count = slot_count;
+		this.slotCount = slotCount;
 		this.requirements = requirements;
 	}
 }

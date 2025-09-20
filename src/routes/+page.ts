@@ -10,7 +10,7 @@ export type ReqState = {
 
 export type bundleState = {
 	name: string;
-	slot_count: number;
+	slotCount: number;
 	requirements: ReqState[];
 	completed: () => boolean;
 };
@@ -22,10 +22,10 @@ export function load() {
 			bundles: room.bundles.map((bundle) => {
 				const bundleState: bundleState = {
 					name: bundle.name,
-					slot_count: bundle.slot_count,
+					slotCount: bundle.slotCount,
 					requirements: [],
 					completed: function () {
-						return this.requirements.filter((req) => req.donated).length >= this.slot_count;
+						return this.requirements.filter((req) => req.donated).length >= this.slotCount;
 					}
 				};
 				bundleState.requirements = bundle.requirements.map((requirement) => {
@@ -47,7 +47,7 @@ export function load() {
 					return {
 						requirement,
 						donated: false,
-						description: `${requirement.item.name}${qualDesc} x${requirement.quantity}`,
+						description: `${requirement.item.name}${qualDesc} x${requirement.count}`,
 						available: function () {
 							return !bundleState.completed();
 						}
