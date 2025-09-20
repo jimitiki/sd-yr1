@@ -18,7 +18,7 @@
 								bind:checked={req.donated}
 								disabled={!req.donated && bundle.completed()}
 							/>
-                            {req.requirement.item.name} x{req.requirement.quantity}
+                            {req.description}
 						</div>
 					{/each}
 				</div>
@@ -42,7 +42,7 @@
 								bind:checked={req.donated}
 								disabled={!req.donated && bundle.completed()}
 							/>
-                            {req.requirement.item.name} x{req.requirement.quantity}
+                            {req.description}
 						</div>
 					{/each}
 				</div>

@@ -1,5 +1,5 @@
-import { Requirement } from './types.js';
-import { items, rooms } from './data.js';
+import { Quality, Requirement } from './types';
+import { items, rooms } from './data';
 
 export function load() {
 	const communityCenter = rooms.map((room) => {
@@ -10,7 +10,26 @@ export function load() {
 					name: bundle.name,
 					slot_count: bundle.slot_count,
 					requirements: bundle.requirements.map((requirement) => {
-						return { requirement, donated: false };
+						let qualDesc: string;
+						switch (requirement.quality) {
+							case Quality.Iridium:
+								qualDesc = ' (iridium star)';
+								break;
+							case Quality.Gold:
+								qualDesc = ' (gold star)';
+								break;
+							case Quality.Silver:
+								qualDesc = ' (silver star)';
+								break;
+							case Quality.Standard:
+							default:
+								qualDesc = '';
+						}
+						return {
+							requirement,
+							donated: false,
+							description: `${requirement.item.name}${qualDesc} x${requirement.quantity}`
+						};
 					}),
 					completed: function () {
 						return this.requirements.filter((req) => req.donated).length >= this.slot_count;
