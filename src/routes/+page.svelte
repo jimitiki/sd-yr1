@@ -2,7 +2,7 @@
 	import { Season } from '$lib/types';
 	import { ReqState } from '$lib/components/types.svelte.js';
 	import Requirement from '$lib/components/requirement.svelte';
-	import Bundle from '$lib/components/bundle.svelte';
+	import Room from '$lib/components/room.svelte';
 	let { data } = $props();
 
 	let reqsByItem: Map<string, Array<ReqState>> = new Map(
@@ -23,12 +23,7 @@
 <h1>Community Center</h1>
 <div id="checklist">
 	{#each data.communityCenter as { name, bundles }}
-		<div class="room">
-			<h2>{name}</h2>
-			{#each bundles as bundle}
-				<Bundle {bundle}></Bundle>
-			{/each}
-		</div>
+		<Room {name} {bundles}></Room>
 	{/each}
 </div>
 
