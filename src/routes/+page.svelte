@@ -2,6 +2,7 @@
 	import { Season } from '$lib/types';
 	import { ReqState } from '$lib/components/types.svelte.js';
 	import Requirement from '$lib/components/requirement.svelte';
+	import Bundle from '$lib/components/bundle.svelte';
 	let { data } = $props();
 
 	let reqsByItem: Map<string, Array<ReqState>> = new Map(
@@ -25,12 +26,7 @@
 		<div class="room">
 			<h2>{name}</h2>
 			{#each bundles as bundle}
-				<div class="bundle">
-					<h3>{bundle.name}</h3>
-					{#each bundle.reqs as req}
-						<Requirement req={req}></Requirement>
-					{/each}
-				</div>
+				<Bundle {bundle}></Bundle>
 			{/each}
 		</div>
 	{/each}
@@ -45,7 +41,7 @@
 				<div>
 					<h3>{item.name}</h3>
 					{#each reqsByItem.get(item.id) || [] as req}
-						<Requirement req={req}></Requirement>
+						<Requirement {req}></Requirement>
 					{/each}
 				</div>
 			{/each}
